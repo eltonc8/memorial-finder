@@ -16,6 +16,7 @@
 //= require underscore
 //= require backbone
 //= require grave_finder
+//= require_tree ./utilities
 //= require_tree ../templates
 //= require_tree ./models
 //= require_tree ./collections
