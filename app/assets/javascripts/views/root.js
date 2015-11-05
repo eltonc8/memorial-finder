@@ -2,6 +2,7 @@ GraveFinder.Views.Root = Backbone.CompositeView.extend({
   template: JST["root/root"],
 
   initialize: function () {
+    this.collection = GraveFinder.Collections.memorials;
     this.render();
   },
 
