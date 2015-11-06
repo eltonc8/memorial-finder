@@ -39,7 +39,31 @@
   </div>
 
   <div class="jumbotron">
-    <ul class="list-group" id="memorial-index-list">
-    </ul>
+    <div class="row">
+      <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+        <div class="row">
+          <div class="controls centered-text">
+            <div class="dropdown btn">
+              <div class="dropdown-toggle" id="display-limit" data-toggle="dropdown">
+                Displaying <%= limit %>
+                <span class="caret"></span>
+              </div>
+              <ul class="dropdown-menu">
+                <% [10, 20, 50, 100, 200].forEach(function(i){ %>
+                  <li>
+                    <a href="javascript:void(0)" data-limit="<%= i %>" class='btn'><%= i %></a>
+                  </li>
+                  <% }) %>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <ul class="list-group" id="memorial-index-list"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div> <!-- /container -->

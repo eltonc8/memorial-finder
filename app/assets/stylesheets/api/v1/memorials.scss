@@ -4,6 +4,23 @@
 
 ul { list-style-type: none; }
 
+// styles concerning dropdown menus
+.dropdown > .dropdown-menu {
+  min-width: 100%;
+  display: block;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 360ms ease-in-out, visibility 360ms ease-in-out;
+  margin-top: 0; // remove the gap so it doesn't close
+}
+
+.dropdown.open > .dropdown-menu,
+.dropdown:hover > .dropdown-menu {
+  visibility: visible;
+  opacity: 1;
+}
+
+
 .memorial-list-item {
   padding: 20px;
   margin: 20px;

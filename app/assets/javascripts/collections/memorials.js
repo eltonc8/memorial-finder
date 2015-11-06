@@ -1,7 +1,5 @@
 GraveFinder.Collections.Memorials = Backbone.Collection.extend({
   model: GraveFinder.Models.Memorial,
-  skip: 0,
-  limit: 10,
 
   getOrFetch: function (value) {
     var memorial = this.get(value);
@@ -11,25 +9,27 @@ GraveFinder.Collections.Memorials = Backbone.Collection.extend({
   },
 
   parse: function(resp, options) {
-    _.invoke(this.toArray(), 'destroy');
+    while (this.last()) {
+      this.remove(this.last());
+    }
     this.total = resp.total;
     return resp.memorial;
   },
 
-  searchName: function(obj){
-    this.firstName = obj && obj.firstName;
-    this.lastName = obj && obj.lastName;
-    if (this.firstName || this.lastName) this.fetch();
+  searchName: function(){
+    if (this.attrs.firstName || this.attrs.lastName) {
+      this.fetch();
+    }
   },
 
   url: function () {
-    var urlBase = "api/v1/memorial/search?",
-        urlFN = "firstName=" + this.firstName,
-        urlLN = "lastName=" + this.lastName,
-        urlSK = "skip=" + this.skip,
-        urlLM = "limit=" + this.limit;
+    var urlBase = "api/v1/memorial/search?", queries = [];
+    queries.push("firstName=" + this.attrs.firstName);
+    queries.push("lastName=" + this.attrs.firstName);
+    queries.push("skip=" + this.attrs.skip);
+    queries.push("limit=" + this.attrs.limit);
 
-    return urlBase + [urlFN, urlLN, urlSK, urlLM].join("&");
+    return urlBase + queries.join("&");
   },
 });
 
