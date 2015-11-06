@@ -4,7 +4,14 @@
 
 ul { list-style-type: none; }
 
-.memorial-list-item { padding: 20px; }
-.memorial-list-item:hover { background-color: rgba(0,0,0,0.2); }
+.memorial-list-item {
+  padding: 20px;
+  margin: 20px;
+  border-radius: 5px;
+}
+.memorial-list-item:hover {
+  background-color: rgba(0,0,0,0.1);
+  cursor: pointer;
+}
 
 .list-group-item img { max-height: 100px; }

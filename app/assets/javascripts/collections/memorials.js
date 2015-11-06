@@ -16,19 +16,20 @@ GraveFinder.Collections.Memorials = Backbone.Collection.extend({
     return resp.memorial;
   },
 
-  searchName: function(firstName, lastName){
-    this.firstName = firstName;
-    this.lastName = lastName;
+  searchName: function(obj){
+    this.firstName = obj && obj.firstName;
+    this.lastName = obj && obj.lastName;
     if (this.firstName || this.lastName) this.fetch();
   },
 
   url: function () {
-    var urlBase = "api/v1/memorial/search?"
+    var urlBase = "api/v1/memorial/search?",
         urlFN = "firstName=" + this.firstName,
         urlLN = "lastName=" + this.lastName,
         urlSK = "skip=" + this.skip,
         urlLM = "limit=" + this.limit;
-    return urlBase + [urlFN, urlLN, urlSK, urlLM].join("&")
+
+    return urlBase + [urlFN, urlLN, urlSK, urlLM].join("&");
   },
 });
 

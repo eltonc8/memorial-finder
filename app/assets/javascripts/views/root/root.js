@@ -39,6 +39,6 @@ GraveFinder.Views.Root = Backbone.CompositeView.extend({
     event.preventDefault();
     this.firstName = this.$("#first-name").val();
     this.lastName = this.$("#last-name").val();
-    this.collection.searchName(this.firstName, this.lastName);
+    this.collection.searchName(this);
   }
 });
