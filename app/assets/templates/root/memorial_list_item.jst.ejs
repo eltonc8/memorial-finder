@@ -1,16 +1,25 @@
 <% var month = ["", "Jan", "February ", "March", "April", "May", "June", "July",
                 "August", "September", "October", "November", "December"] %>
 
-<div class="list-group-item-heading lead">
-  <%= model.escape("prefix") %>
-  <%= model.escape("firstName") %>
-  <%= model.escape("lastName") %>
+<div class="col-sm-4 pull-left list-group-item-heading">
+  <% if (model.escape('thumbnailUrl')) { %>
+    <img src="<%= model.escape('thumbnailUrl') %>" class="img-responsive img-circle"
+      alt='<%= model.escape("firstName") + " " + model.escape("lastName")%>'>
+  <% } %>
 </div>
 
-<div class="list-group-item-text">
-  <%= +model.escape("deathMonth") && ( month[+model.escape("deathMonth")] +
-    (" " + (+model.escape("deathDay")) || "")) %>,
-  <%= +model.escape("deathYear") && model.escape("deathYear") %>
+<div class="col-sm-8 list-group-item-text">
+  <div class="lead">
+    <%= model.escape("prefix") %>
+    <%= model.escape("firstName") %>
+    <%= model.escape("lastName") %>
+  </div>
+
+  <div class="">
+    <%= +model.escape("deathMonth") && ( month[+model.escape("deathMonth")] +
+      (" " + (+model.escape("deathDay")) || "")) %>,
+    <%= +model.escape("deathYear") && model.escape("deathYear") %>
+  </div>
 </div>
 
 <!-- {

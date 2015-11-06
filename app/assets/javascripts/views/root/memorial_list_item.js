@@ -1,6 +1,6 @@
 GraveFinder.Views.MemorialListItem = Backbone.View.extend({
   tagName: "li",
-  className: "memorial-list-item list-group-item",
+  className: "memorial-list-item list-group-item clearfix",
   template: JST['root/memorial_list_item'],
 
   initialize: function () {
