@@ -1,4 +1,4 @@
-GraveFinder.Views.Memorial = Backbone.View.extend({
+GraveFinder.Views.MemorialListItem = Backbone.View.extend({
   tagName: "li",
   template: JST['root/memorial_list_item'],
 

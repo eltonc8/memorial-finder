@@ -10,6 +10,12 @@ GraveFinder.Collections.Memorials = Backbone.Collection.extend({
     return security;
   },
 
+  parse: function(resp, options) {
+    _.invoke(this.toArray(), 'destroy');
+    this.total = resp.total;
+    return resp.memorial;
+  },
+
   searchName: function(firstName, lastName){
     this.firstName = firstName;
     this.lastName = lastName;
@@ -22,7 +28,6 @@ GraveFinder.Collections.Memorials = Backbone.Collection.extend({
         urlLN = "lastName=" + this.lastName,
         urlSK = "skip=" + this.skip,
         urlLM = "limit=" + this.limit;
-  debugger
     return urlBase + [urlFN, urlLN, urlSK, urlLM].join("&")
   },
 });

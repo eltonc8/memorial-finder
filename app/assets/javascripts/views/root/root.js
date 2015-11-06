@@ -18,8 +18,8 @@ GraveFinder.Views.Root = Backbone.CompositeView.extend({
     }.bind(this));
   },
 
-  addPostListItem: function (memorial) {
-    var memorialListItem = new GraveFinder.Views.Memorial({
+  addMemorialListItem: function (memorial) {
+    var memorialListItem = new GraveFinder.Views.MemorialListItem({
       model: memorial,
     });
     this.addSubview("ul#memorial-index-list", memorialListItem);
