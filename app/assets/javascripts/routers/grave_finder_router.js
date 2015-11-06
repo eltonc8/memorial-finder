@@ -1,10 +1,13 @@
 GraveFinder.Routers.GraveFinderRouter = Backbone.Router.extend({
   initialize: function (options) {
+    this.collection = GraveFinder.Collections.memorials;
     this.$rootEl = options.$rootEl;
   },
 
   routes: {
     "": "root",
+    "memorials/:memorialId": "memorialView",
+    ":default": "root",
   },
 
   root: function () {
@@ -12,6 +15,18 @@ GraveFinder.Routers.GraveFinderRouter = Backbone.Router.extend({
       collection: this.collection
     });
     this._swapView(view);
+  },
+
+  memorialView: function (memorialId) {
+    var view, memorial = this.collection.findWhere({memorialId: memorialId});
+    if (memorial) {
+      view = new GraveFinder.Views.Memorial({
+        model: memorial
+      });
+      this._swapView(view);
+    } else {
+      Backbone.history.navigate("", {trigger: true});
+    }
   },
 
   _swapView: function (view) {

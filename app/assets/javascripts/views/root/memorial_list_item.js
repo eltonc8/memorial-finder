@@ -11,6 +11,7 @@ GraveFinder.Views.MemorialListItem = Backbone.View.extend({
     var content = this.template({
       model: this.model
     });
+    this.$el.attr("data-memorial-id", this.model.escape("memorialId"));
     this.$el.html(content);
     return this;
   }

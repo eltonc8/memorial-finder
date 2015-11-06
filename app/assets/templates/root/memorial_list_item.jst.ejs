@@ -1,6 +1,3 @@
-<% var month = ["", "Jan", "February ", "March", "April", "May", "June", "July",
-                "August", "September", "October", "November", "December"] %>
-
 <div class="col-xs-4 pull-left list-group-item-heading">
   <% if (model.escape('thumbnailUrl')) { %>
     <img src="<%= model.escape('thumbnailUrl') %>" class="img-responsive img-circle"
@@ -15,12 +12,12 @@
     <%= model.escape("lastName") %>
   </div>
 
-  <div class="">
-    <% if (!+model.escape("deathMonth")) { %>
-      <%= month[+model.escape("deathMonth")] %>
-      <%= (+model.escape("deathDay")) || "" %>
-    <% } %>
-    <%= +model.escape("deathYear") && model.escape("deathYear") || "" %>
+  <div class="date">
+    <%= JST["common/_date"]({
+      month: +model.escape("deathMonth"),
+      day: +model.escape("deathDay"),
+      year: +model.escape("deathYear"),
+    }) %>
   </div>
 </div>
 

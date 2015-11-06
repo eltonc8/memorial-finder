@@ -1,0 +1,89 @@
+<div class="container">
+
+  <!-- Main component for a primary marketing message or call to action -->
+  <div class="jumbotron">
+    <div class="row">
+      <div class="col-xs-10 col-xs-offset-1">
+        <h2>
+          Memorial of
+          <%= model.escape("prefix") %>
+          <%= model.escape("firstName") %>
+          <%= model.escape("middleName") %>
+          <%= model.escape("lastName") %>
+          <%= model.escape("maidenName") %>
+        </h2>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-10 col-xs-offset-2 centered-text">
+        <% if (model.escape('thumbnailUrl')) { %>
+          <img src="<%= model.escape('thumbnailUrl') %>" class="img-responsive img-circle"
+          alt='<%= model.escape("firstName") + " " + model.escape("lastName")%>'>
+          <% } %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-8 col-xs-offset-2">
+        <div class="row">
+          <div class="lead">Born</div>
+          <%= JST["common/_date"]({
+            month: +model.escape("birthMonth"),
+            day: +model.escape("birthDay"),
+            year: +model.escape("birthYear"),
+          }) %>
+        </div>
+
+        <div class="row">
+          <div class="lead">Death</div>
+          <%= JST["common/_date"]({
+            month: +model.escape("deathMonth"),
+            day: +model.escape("deathDay"),
+            year: +model.escape("deathYear"),
+          }) %>
+        </div>
+
+        <div class="row">
+          <h3 class="lead">Cemetry Information</h3>
+        </div>
+
+        <div class="row">
+          <div class="lead">Cemetery Name</div>
+          <%= model.escape("cemeteryName") %>
+        </div>
+
+        <div class="row">
+          <div class="lead">Cemetery City</div>
+          <%= model.escape("cemeteryCityName") %>
+        </div>
+
+        <div class="row">
+          <div class="lead">Cemetery County</div>
+          <%= model.escape("cemeteryCountyName") %>
+        </div>
+
+        <div class="row">
+          <div class="lead">Cemetery State</div>
+          <%= model.escape("cemeteryStateName") %>
+        </div>
+
+        <div class="row">
+          <div class="lead">Cemetery Country</div>
+          <%= model.escape("cemeteryCountryName") %>
+        </div>
+
+        <div class="row">
+          <div class="lead">Cemetery ID</div>
+          <%= model.escape("cemeteryId") %>
+        </div>
+
+        <div class="row">
+          <div class="lead">Memorial ID</div>
+          <%= model.escape("memorialId") %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

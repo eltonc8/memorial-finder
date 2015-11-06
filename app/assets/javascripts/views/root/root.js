@@ -12,6 +12,7 @@ GraveFinder.Views.Root = Backbone.CompositeView.extend({
     "submit form#name-search": "_search",
     "submit form#page": "_pageChange",
     "click .controls a": "_attrsChange",
+    "click .memorial-list-item": "_clickNavigate",
   },
 
   initialize: function () {
@@ -55,9 +56,17 @@ GraveFinder.Views.Root = Backbone.CompositeView.extend({
     }
   },
 
+  _clickNavigate: function (event) {
+    var path, memorialId = $(event.currentTarget).attr("data-memorial-id");
+    if (!memorialId) return;
+    path = ("memorials/" + memorialId);
+
+    Backbone.history.navigate(path, {trigger: true});
+  },
+
   _pageChange: function(event){
     event.preventDefault();
-    var max = Math.floor(this.attrs.total / this.attrs.limit + 1),
+    var max = Math.floor(this.attrs.total / this.attrs.limit),
         page = Math.min(max, Math.floor( +this.$("#page-number").val() - 1 ));
     if (page < 0) page = 0;
 
@@ -69,7 +78,7 @@ GraveFinder.Views.Root = Backbone.CompositeView.extend({
     event.preventDefault();
     this.attrs.firstName = this.$("#first-name").val();
     this.attrs.lastName = this.$("#last-name").val();
-    this.attrs.skip = 0
+    this.attrs.skip = 0;
     this.collection.searchName();
   }
 });

@@ -1,0 +1,12 @@
+<% var monthNames = ["", "Jan", "February ", "March", "April", "May", "June", "July",
+                "August", "September", "October", "November", "December"] %>
+
+<% if (year || day || month) { %>
+  <% if (month) { %>
+    <%= monthNames[month] %>
+    <%= day %>,
+  <% } %>
+  <%= year %>
+<% } else { %>
+  Unknown
+<% } %>
