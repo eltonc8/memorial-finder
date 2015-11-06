@@ -22,6 +22,7 @@ GraveFinder.Collections.Memorials = Backbone.Collection.extend({
         urlLN = "lastName=" + this.lastName,
         urlSK = "skip=" + this.skip,
         urlLM = "limit=" + this.limit;
+  debugger
     return urlBase + [urlFN, urlLN, urlSK, urlLM].join("&")
   },
 });
