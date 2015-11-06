@@ -18,7 +18,7 @@ GraveFinder.Collections.Memorials = Backbone.Collection.extend({
   url: function () {
     var urlBase = "api/v1/memorial/search?", queries = [];
     queries.push("firstName=" + this.attrs.firstName);
-    queries.push("lastName=" + this.attrs.firstName);
+    queries.push("lastName=" + this.attrs.lastName);
     queries.push("skip=" + this.attrs.skip);
     queries.push("limit=" + this.attrs.limit);
 
