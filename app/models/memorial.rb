@@ -10,5 +10,7 @@ class Memorial < ActiveRecord::Base
     queries = [qmo, qfn, qln, qth, qsk, qlm]
 
     response = HTTParty.get( url + queries.join("&") ).to_s
+    puts response
+    response
   end
 end

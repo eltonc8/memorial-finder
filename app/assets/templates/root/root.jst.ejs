@@ -9,7 +9,7 @@
     </div>
 
     <div class="row search-form">
-      <form class="col-xs-8 col-xs-offset-2">
+      <form class="col-xs-8 col-xs-offset-2" id="name-search">
 
         <div class='form-group'>
           <label for="first-name">First Name: </label>
@@ -57,6 +57,19 @@
                 </ul>
               </div>
             </div>
+            <form class="centered-text <%= total ? '' : 'hidden' %>" id="page">
+              <div class='form-group'>
+                <label for="page-number">Page: </label>
+                <input
+                name="page[number]"
+                type="text"
+                placeholder="Page"
+                value="<%= skip + 1 %>"
+                id="page-number"/>
+                max: <%= Math.ceil( total / limit ) %>
+                <input class="search-submit btn" value="Go" type="submit"/>
+              </div>
+            </form>
           </div>
 
           <div class="row">

@@ -5,10 +5,12 @@ GraveFinder.Views.Root = Backbone.CompositeView.extend({
     lastName: "",
     skip: 0,
     limit: 10,
+    total: 0,
   },
 
   events: {
-    "click .search-submit": "_search",
+    "submit form#name-search": "_search",
+    "submit form#page": "_pageChange",
     "click .controls a": "_attrsChange",
   },
 
@@ -47,16 +49,27 @@ GraveFinder.Views.Root = Backbone.CompositeView.extend({
   _attrsChange: function(event){
     var target = $(event.currentTarget),
         limit = target.attr("data-limit");
-    if (limit) {
+    if (this.attrs.limit) {
       this.attrs.limit = limit;
       this.collection.searchName();
     }
+  },
+
+  _pageChange: function(event){
+    event.preventDefault();
+    var max = Math.floor(this.attrs.total / this.attrs.limit + 1),
+        page = Math.min(max, Math.floor( +this.$("#page-number").val() - 1 ));
+    if (page < 0) page = 0;
+
+    this.attrs.skip = page;
+    this.collection.searchName();
   },
 
   _search: function(event){
     event.preventDefault();
     this.attrs.firstName = this.$("#first-name").val();
     this.attrs.lastName = this.$("#last-name").val();
+    this.attrs.skip = 0
     this.collection.searchName();
   }
 });

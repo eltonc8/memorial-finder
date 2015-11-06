@@ -12,7 +12,7 @@ GraveFinder.Collections.Memorials = Backbone.Collection.extend({
     while (this.last()) {
       this.remove(this.last());
     }
-    this.total = resp.total;
+    this.attrs.total = resp.total;
     return resp.memorial;
   },
 
