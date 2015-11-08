@@ -1,17 +1,25 @@
 class Api::V1::MemorialsController < ApplicationController
   def search
-    @memorials = Memorial.search(params)
-    render json: @memorials
+    begin
+      @memorials = Memorial.search(params)
+      render json: @memorials
+    rescue
+      render json: ["error with request"], status: :bad_request
+    end
   end
 
   def show
-    @memorial = Memorial.show(params[:id])
+    begin
+      @memorial = Memorial.show(params[:id])
 
-    if @memorial
-      render json: @memorial
-    else
-      render json: ["cannot find memorial, id given: #{ params[:id] }"],
-        status: :not_found
+      if @memorial
+        render json: @memorial
+      else
+        render json: ["cannot find memorial, id given: #{ params[:id] }"],
+          status: :not_found
+      end
+    rescue
+      render json: ["error with request"], status: :bad_request
     end
   end
 end
