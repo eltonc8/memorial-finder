@@ -1,6 +1,16 @@
 GraveFinder.Collections.Memorials = Backbone.Collection.extend({
   model: GraveFinder.Models.Memorial,
 
+  getOrFetch: function(memorialId){
+    var memorial = this.get(memorialId);
+    if (!memorial){
+      memorial = new this.model(memorialId);
+    }
+    memorial.fetch();
+
+    return memorial;
+  },
+
   parse: function(resp, options) {
     while (this.last()) {
       this.remove(this.last());

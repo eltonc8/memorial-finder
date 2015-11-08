@@ -18,7 +18,7 @@ GraveFinder.Routers.GraveFinderRouter = Backbone.Router.extend({
   },
 
   memorialView: function (memorialId) {
-    var view, memorial = this.collection.findWhere({memorialId: memorialId});
+    var view, memorial = this.collection.getOrFetch({memorialId: memorialId});
     if (memorial) {
       view = new GraveFinder.Views.Memorial({
         model: memorial

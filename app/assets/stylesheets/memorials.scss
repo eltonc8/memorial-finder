@@ -27,9 +27,23 @@ ul { list-style-type: none; }
   margin: 20px;
   border-radius: 5px;
 }
+
 .memorial-list-item:hover {
   background-color: rgba(0,0,0,0.1);
   cursor: pointer;
 }
 
 .list-group-item img { max-height: 100px; }
+
+// styles concerning memorial show
+
+.memorial-info * { background-color: rgba(255,255,255,0.1); }
+.memorial-info {
+  margin-top: 50px;
+}
+
+.memorial-detail > * { margin: 0;}
+
+.memorial-detail:hover > [class^="list-group-item"] {
+  font-weight: bolder;
+}
