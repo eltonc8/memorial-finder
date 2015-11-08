@@ -3,7 +3,8 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      get "memorial/search", to: "memorials#search"
+      get "memorials/search", to: "memorials#search"
+      get "memorials/:id", to: "memorials#show"
     end
   end
 end
