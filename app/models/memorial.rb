@@ -9,8 +9,6 @@ class Memorial < ActiveRecord::Base
     qlm = "limit=" + params[:limit]
     queries = [qmo, qfn, qln, qth, qsk, qlm]
 
-    response = HTTParty.get( url + queries.join("&") ).to_s
-    puts response
-    response
+    HTTParty.get( url + queries.join("&") ).to_s
   end
 end
