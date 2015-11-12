@@ -6,6 +6,6 @@ body {
   min-height: 100vh;
 }
 
-.navbar-static-top {
-  margin-bottom: 19px;
-}
+#content { overflow-y: scroll; }
+
+#content .jumbotron:first-of-type { margin-top: 20px; }

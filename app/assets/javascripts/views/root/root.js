@@ -19,10 +19,11 @@ GraveFinder.Views.Root = Backbone.CompositeView.extend({
     this.firstName = this.lastName = "";
     this.collection = GraveFinder.Collections.memorials;
     this.collection.attrs = this.attrs;
+    $(window).on("resize", this.render.bind(this));
     this.render();
-    this.listenTo(this.collection, "sync add remove", this.render);
     this.listenTo(this.collection, 'add', this.memorialListItemAdd);
     this.listenTo(this.collection, 'remove', this.memorialListItemRemove);
+    this.listenTo(this.collection, "sync add remove", this.render);
 
     this.collection.each(function (memorial) {
       this.memorialListItemAdd(memorial);
@@ -41,10 +42,21 @@ GraveFinder.Views.Root = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    var content = this.template(this.attrs);
+    var content = this.template(this.attrs),
+        nav_height = $("nav").height();
     this.$el.html( content );
+    $("#content").css({
+      "margin-top": nav_height + "px",
+      "height": $(window).height() - nav_height + "px"
+    });
     this.attachSubviews();
     return this;
+  },
+
+  remove: function () {
+    $(window).off("resize", this._setupBinded);
+    Backbone.CompositeView.prototype.remove.call(this);
+    clearInterval(this.interval);
   },
 
   _attrsChange: function(event){
